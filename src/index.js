@@ -1,10 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import store from './app/store';
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { createStore } from "redux";
+import allReducers from "./reducers";
+import { Provider } from "react-redux";
+import { saveToLocalStorage, loadFromLocalStorage } from "./localStorage";
+
+const LoginTimeout = 10 * 60 * 1000;
+const persistedState = loadFromLocalStorage();
+
+const store = createStore(
+  allReducers,
+  //persistedState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+//TODO: add a timeoout for local storage to be cleared out.
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,10 +25,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
