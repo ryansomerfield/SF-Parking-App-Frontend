@@ -1,13 +1,13 @@
-const signIn = () => {
+const logIn = () => {
   return {
-    type: "SIGN_IN",
+    type: "LOG_IN",
   };
 };
 
-const signOut = () => {
+const logOut = () => {
   return {
-    type: "SIGN_OUT",
+    type: "LOG_OUT",
   };
 };
 
-export { signIn, signOut };
+export { logIn, logOut };

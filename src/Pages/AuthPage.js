@@ -1,32 +1,50 @@
-import React from "react";
-import { withRouter, useParams, Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { withRouter, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signIn, signOut } from "../actions/isLogged";
+import { logIn, logOut } from "../actions/isLogged";
 import { setUser, clearUser } from "../actions/user";
 
 const AuthPage = () => {
-  let { userId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [redirect, setRedirect] = useState(false);
   const dispatch = useDispatch();
-  let isLogged = useSelector((state) => state.user);
-  (async () => {
-    try {
-      const userResponse = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}user/${userId}`,
-        {
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}user/me`, {
           method: "GET",
           credentials: "include",
-        }
-      ).then((res) => res.json());
-      const user = userResponse[0];
-      dispatch(setUser(user));
-      dispatch(signIn());
-    } catch (err) {
-      dispatch(clearUser());
-      dispatch(signOut());
-      console.error(`There was a problem with sign in. ${err}`);
+        }).then(async (res) => {
+          if (res.status === 200) {
+            setLoading(false);
+            const user = await res.json();
+            console.log(user);
+            dispatch(setUser(user[0]));
+            dispatch(logIn());
+          } else {
+            console.log(res.status);
+            // const error = new Error(userResponse.error);
+            // throw error;
+          }
+        });
+      } catch (err) {
+        setLoading(false);
+        setRedirect(true);
+        dispatch(clearUser());
+        dispatch(logOut());
+        console.error(`There was a problem with sign in. ${err}`);
+      }
     }
-  })();
-  return <>{isLogged ? <Redirect to="/" /> : null}</>;
+    fetchData();
+  }, [dispatch]);
+  if (loading) {
+    return null;
+  }
+  if (redirect) {
+    return <Redirect to="/login" />;
+  }
+  return <Redirect to="/" />;
 };
 
 export default withRouter(AuthPage);
