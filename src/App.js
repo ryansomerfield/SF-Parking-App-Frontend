@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage";
 import HomePage from "./Pages/HomePage";
-import AuthPage from "./Pages/AuthPage";
+import LandingPage from "./Pages/LandingPage";
+import E404 from "./Pages/404";
 import { useSelector } from "react-redux";
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
               <LoginPage />
             </Route>
             <Route path="/">
-              <AuthPage />
+              <LandingPage />
             </Route>
           </>
         ) : (
@@ -24,6 +25,10 @@ const App = () => {
         )}
         <Route exact path="/">
           <HomePage />
+        </Route>
+
+        <Route path="*">
+          <E404 />
         </Route>
       </Switch>
     </BrowserRouter>

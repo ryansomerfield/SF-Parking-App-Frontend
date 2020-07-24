@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, Redirect } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { Redirect, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { logIn, logOut } from "../actions/isLogged";
 import { setUser, clearUser } from "../actions/user";
 
-const AuthPage = () => {
+const LandingPage = () => {
   const [loading, setLoading] = useState(true);
   const [redirect, setRedirect] = useState(false);
   const dispatch = useDispatch();
-
+  let location = useLocation();
+  const redirectPath = location.pathname;
   useEffect(() => {
     async function fetchData() {
       try {
@@ -19,13 +20,11 @@ const AuthPage = () => {
           if (res.status === 200) {
             setLoading(false);
             const user = await res.json();
-            console.log(user);
             dispatch(setUser(user[0]));
             dispatch(logIn());
           } else {
-            console.log(res.status);
-            // const error = new Error(userResponse.error);
-            // throw error;
+            const error = new Error(res.error);
+            throw error;
           }
         });
       } catch (err) {
@@ -33,7 +32,6 @@ const AuthPage = () => {
         setRedirect(true);
         dispatch(clearUser());
         dispatch(logOut());
-        console.error(`There was a problem with sign in. ${err}`);
       }
     }
     fetchData();
@@ -44,7 +42,11 @@ const AuthPage = () => {
   if (redirect) {
     return <Redirect to="/login" />;
   }
-  return <Redirect to="/" />;
+  return location.pathname === "/auth/" ? (
+    <Redirect to="/" />
+  ) : (
+    <Redirect to={redirectPath} />
+  );
 };
 
-export default withRouter(AuthPage);
+export default LandingPage;
