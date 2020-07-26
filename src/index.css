@@ -1,5 +1,7 @@
 body {
+  background-color: #eef1ef !important;
   margin: 0;
+  overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -7,7 +9,235 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Content Stuff */
+.content-container {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  position: absolute;
+  top: 60px;
+  padding: 5px;
+}
+@media screen and (max-width: 991px) {
+  .content-container {
+    top: 56px;
+    height: calc(100vh - 124px);
+  }
+}
+
+/* Map Stuff */
 .mapDiv {
-  height: 50vh;
-  width: 50vw;
+  position: relative;
+  display: inline-block;
+  top: 0px;
+  padding: 1rem;
+  width: 70%;
+  height: 100%;
+}
+.mapboxgl-map {
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 991px) {
+  .mapDiv {
+    width: 100%;
+    height: 85vh;
+    display: block;
+  }
+}
+
+/* Card Stuff */
+.card-container {
+  position: relative;
+  display: inline-block;
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 0px;
+  padding: 1rem;
+  width: 30%;
+  height: 100%;
+}
+@media screen and (max-width: 991px) {
+  .card-container {
+    margin-bottom: 70px !important;
+    margin: auto;
+    height: auto;
+    width: 80%;
+    display: block;
+  }
+}
+.card {
+  background-color: #e8ecec !important;
+  margin-bottom: 1rem;
+  min-height: 100px;
+}
+.card-outer-body {
+  padding: 20px !important;
+}
+.card-body {
+  padding: 0 !important;
+}
+.car-type-image {
+  max-width: 90%;
+  height: auto;
+  text-align: center;
+}
+.card-hidden-content {
+  text-align: center;
+  margin-bottom: 10px;
+  min-height: 45px;
+}
+.card-park-icon {
+  color: #7d98a1 !important;
+  position: absolute;
+  font-size: 32px;
+  right: 1rem;
+  top: 16px;
+}
+.card-title {
+  color: #535c67 !important;
+  font-size: 1.5rem !important;
+  margin-right: 3.5rem !important;
+  text-align: center;
+}
+
+.card-subtitle {
+  color: #535c67 !important;
+  margin-right: 3.5rem !important;
+  text-align: center;
+}
+.card-dropdown-icon {
+  color: #535c67 !important;
+  position: absolute;
+  font-size: 48px;
+  right: 1rem;
+  bottom: 0px;
+}
+/* Navbar Stuff */
+.bg-dark {
+  background-color: #2c3238;
+}
+.nav-brand-name,
+.nav-brand-name:hover {
+  font-size: 24px;
+  font-weight: bolder;
+  color: #dedede;
+}
+.navbar-image {
+  margin: 2;
+  font-size: 24px;
+  color: #dedede;
+  height: 20px;
+  width: auto;
+  padding: 0 !important;
+  display: block;
+  text-align: center;
+}
+
+.navbar-profile-image {
+  height: 25px;
+  width: auto;
+  padding: 0 !important;
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 15px);
+  border: 1px solid #dedede;
+}
+.nav-dropdown-link {
+  position: absolute;
+  top: 20px;
+}
+.navbar-dark .navbar-text {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+/* .navbar-dark .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 0.5) !important;
+} */
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.navbar-text {
+  color: #cccecf;
+  margin: 0;
+  padding: 0 !important;
+  display: block;
+  text-align: center;
+}
+.nav-user-link {
+  position: relative;
+}
+.nav-link {
+  position: relative;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.nav-link-spacing {
+  margin-left: 2rem !important;
+  margin-right: 2rem !important;
+}
+.nav-link-special {
+  position: relative;
+  margin-left: 0rem;
+  margin-right: 0rem;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.navbar-select-marker {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 3px;
+  top: 47px;
+  background-color: white;
+  display: none;
+}
+.nav-link:hover .navbar-select-marker {
+  display: inline;
+}
+.nav-link-special:hover .navbar-select-marker {
+  display: inline;
+}
+
+.navbar {
+  padding-top: 2 !important;
+  padding-bottom: 2 !important;
+}
+
+.navbar-content-justify-right {
+  margin-right: 10rem;
+}
+
+@media screen and (max-width: 991px) {
+  .navbar-image {
+    display: none !important;
+  }
+  .navbar-profile-image {
+    display: none !important;
+  }
+  .navbar-collapse-content {
+    margin-right: 0rem;
+  }
+  .navbar-text {
+    font-size: 24px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .nav-link {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .nav-dropdown-link {
+    top: 0px;
+  }
+  .nav-user-link {
+    font-size: 24px;
+    margin: 0.5rem;
+    white-space: nowrap;
+    text-align: center;
+  }
 }
