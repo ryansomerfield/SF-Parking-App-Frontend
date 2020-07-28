@@ -8,7 +8,7 @@ const NavigationHeader = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <LinkContainer to="/">
-        <Nav.Link className="nav-brand-name">Parking App</Nav.Link>
+        <div className="nav-brand-name">Park App</div>
       </LinkContainer>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse

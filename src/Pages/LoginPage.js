@@ -1,39 +1,56 @@
 import React from "react";
-import "./LoginPage.css";
 
 const LoginPage = () => {
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <h2 className="align-center">Login with Social Media</h2>
-          <div className="vl"></div>
-
-          <div className="col">
-            <div className="hide-md-lg">
-              <p>Or sign in manually:</p>
+      <div className="login-bg">
+        <div className="login-container-full">
+          <div className="login-container-clipped"></div>
+          <div className="login-content-container">
+            <div className="login-content-left">
+              <div className="login-svg-container">
+                <div className="login-app-logo"></div>
+                <div className="login-app-text">Park App</div>
+              </div>
             </div>
-          </div>
-
-          <div className="col">
-            <a
-              href={process.env.REACT_APP_BACKEND_URL + "auth/facebook"}
-              className="fb btn"
-            >
-              <i className="fa fa-facebook fa-fw"></i> Login with Facebook
-            </a>
-            <a
-              href={process.env.REACT_APP_BACKEND_URL + "auth/twitter"}
-              className="twitter btn"
-            >
-              <i className="fa fa-twitter fa-fw"></i> Login with Twitter
-            </a>
-            <a
-              href={process.env.REACT_APP_BACKEND_URL + "auth/google"}
-              className="google btn"
-            >
-              <i className="fa fa-google fa-fw"></i> Login with Google+
-            </a>
+            <div className="login-content-right">
+              <div className="login-info-container">
+                <div className="login-text">Login with</div>
+                <div className="login-text-strong">Social Media</div>
+                <div className="login-button-container">
+                  <div className="button-box">
+                    <a
+                      href={process.env.REACT_APP_BACKEND_URL + "auth/facebook"}
+                      className="fb btn"
+                      alt="Login with Facebook"
+                    >
+                      <i className="fa fa-facebook fa-fw"></i>
+                    </a>
+                    <div className="under-shadow"></div>
+                  </div>
+                  <div className="button-box">
+                    <a
+                      href={process.env.REACT_APP_BACKEND_URL + "auth/twitter"}
+                      className="twitter btn"
+                      alt="Login with Twitter"
+                    >
+                      <i className="fa fa-twitter fa-fw"></i>
+                    </a>
+                    <div className="under-shadow"></div>
+                  </div>
+                  <div className="button-box">
+                    <a
+                      href={process.env.REACT_APP_BACKEND_URL + "auth/google"}
+                      className="google btn"
+                      alt="Login with Google+"
+                    >
+                      <i className="fa fa-google fa-fw"></i>
+                    </a>
+                    <div className="under-shadow"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
