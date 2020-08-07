@@ -11,7 +11,7 @@ const LandingPage = () => {
   let location = useLocation();
   const redirectPath = location.pathname;
   useEffect(() => {
-    async function fetchData() {
+    async function fetchUser() {
       try {
         await fetch(`${process.env.REACT_APP_BACKEND_URL}user/me`, {
           method: "GET",
@@ -34,7 +34,7 @@ const LandingPage = () => {
         dispatch(logOut());
       }
     }
-    fetchData();
+    fetchUser();
   }, [dispatch]);
   if (loading) {
     return null;

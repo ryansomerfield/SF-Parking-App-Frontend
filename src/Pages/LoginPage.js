@@ -1,4 +1,5 @@
 import React from "react";
+import LoginSVG from "../Components/LoginSVG";
 
 const LoginPage = () => {
   return (
@@ -9,8 +10,7 @@ const LoginPage = () => {
           <div className="login-content-container">
             <div className="login-content-left">
               <div className="login-svg-container">
-                <div className="login-app-logo"></div>
-                <div className="login-app-text">Park App</div>
+                <LoginSVG className="login-svg-logo" />
               </div>
             </div>
             <div className="login-content-right">

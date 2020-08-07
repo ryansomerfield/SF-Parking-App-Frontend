@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const NavigationHeader = () => {
   const user = useSelector((state) => state.user);
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <LinkContainer to="/">
@@ -34,13 +35,6 @@ const NavigationHeader = () => {
               <div className="navbar-select-marker" />
             </Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/cars">
-            <Nav.Link className="nav-link-spacing">
-              <i className="fa fa-car navbar-image" aria-hidden="true"></i>
-              <div className="navbar-text">My Cars</div>
-              <div className="navbar-select-marker" />
-            </Nav.Link>
-          </LinkContainer>
           <div className="nav-link-special nav-link-spacing">
             <div className="nav-user-link">
               {user.image ? (
@@ -65,9 +59,13 @@ const NavigationHeader = () => {
                 </LinkContainer>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <LinkContainer to="/admin">
-                  <NavItem>Admin</NavItem>
-                </LinkContainer>
+                {user.admin ? (
+                  <LinkContainer to="/admin">
+                    <NavItem>Admin</NavItem>
+                  </LinkContainer>
+                ) : (
+                  ""
+                )}
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <LinkContainer to="/help">

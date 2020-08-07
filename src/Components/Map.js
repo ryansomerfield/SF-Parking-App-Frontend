@@ -8,7 +8,7 @@ const Map = () => {
       width: "100%",
       latitude: 37.7577,
       longitude: -122.4376,
-      zoom: 8,
+      zoom: 11.75,
     },
     []
   );
@@ -23,19 +23,21 @@ const Map = () => {
         zoom: viewport.zoom,
       });
     }
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   });
+  const handleClick = (e) => {
+    console.log(e);
+  };
 
   return (
     <div className="mapDiv">
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        onClick={handleClick}
         onViewportChange={setViewport}
       />
     </div>

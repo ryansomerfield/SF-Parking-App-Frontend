@@ -12,6 +12,7 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+// TODO: Remove the React.StrictMode Tags
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
